@@ -1,17 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Debt App V2 Mock</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<title>Debt Flow Command</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
+
 :root{
-  --bg:#060b16;
-  --panel:#121a2b;
-  --panel2:#192235;
+  --bg:#070b14;
+  --panel:#111827;
+  --panel2:#172033;
   --border:rgba(255,255,255,.08);
   --text:#f8fafc;
   --muted:#94a3b8;
@@ -23,16 +25,17 @@
 }
 
 *{
-  box-sizing:border-box;
   margin:0;
   padding:0;
+  box-sizing:border-box;
 }
 
 body{
   background:
-    radial-gradient(circle at top left, rgba(94,161,255,.18), transparent 30%),
-    radial-gradient(circle at top right, rgba(139,92,246,.12), transparent 30%),
+    radial-gradient(circle at top left, rgba(94,161,255,.15), transparent 30%),
+    radial-gradient(circle at top right, rgba(139,92,246,.14), transparent 30%),
     var(--bg);
+
   color:var(--text);
   font-family:Inter,sans-serif;
 }
@@ -44,7 +47,7 @@ body{
   padding:18px 18px 120px;
 }
 
-.top{
+.topbar{
   display:flex;
   justify-content:space-between;
   align-items:center;
@@ -52,37 +55,38 @@ body{
 }
 
 .logo{
+  font-size:13px;
   font-weight:800;
-  font-size:14px;
-  letter-spacing:.08em;
+  letter-spacing:.14em;
   color:#dbeafe;
 }
 
 .hero{
-  background:linear-gradient(145deg,#111827,#1b2740);
+  background:linear-gradient(145deg,#121827,#1b2740);
   border:1px solid var(--border);
-  border-radius:28px;
+  border-radius:30px;
   padding:24px;
-  margin-bottom:16px;
+  margin-bottom:18px;
   box-shadow:0 20px 50px rgba(0,0,0,.35);
 }
 
 .label{
-  font-size:11px;
-  color:var(--muted);
+  font-size:10px;
   text-transform:uppercase;
-  letter-spacing:.12em;
-  font-weight:800;
+  letter-spacing:.14em;
+  color:var(--muted);
+  font-weight:700;
 }
 
 .big{
   font-size:52px;
   font-weight:800;
-  margin:10px 0;
   letter-spacing:-.06em;
+  margin-top:10px;
 }
 
 .sub{
+  margin-top:10px;
   color:var(--muted);
   font-size:13px;
   line-height:1.5;
@@ -92,26 +96,39 @@ body{
   display:grid;
   grid-template-columns:1fr 1fr;
   gap:12px;
-  margin-top:14px;
+  margin-top:16px;
 }
 
 .card{
   background:rgba(17,24,39,.82);
   border:1px solid var(--border);
-  border-radius:20px;
-  padding:14px;
+  border-radius:22px;
+  padding:16px;
 }
 
 .card h4{
   font-size:10px;
+  color:var(--muted);
   text-transform:uppercase;
   letter-spacing:.12em;
-  color:var(--muted);
   margin-bottom:8px;
 }
 
-.card .value{
-  font-size:22px;
+.value{
+  font-size:24px;
+  font-weight:700;
+}
+
+.section{
+  margin-top:26px;
+}
+
+.section-title{
+  font-size:11px;
+  text-transform:uppercase;
+  letter-spacing:.14em;
+  color:#cbd5e1;
+  margin-bottom:12px;
   font-weight:700;
 }
 
@@ -119,14 +136,13 @@ body{
   display:grid;
   grid-template-columns:repeat(7,1fr);
   gap:8px;
-  margin-top:18px;
 }
 
 .day{
   background:rgba(17,24,39,.82);
   border:1px solid var(--border);
   border-radius:16px;
-  min-height:62px;
+  min-height:64px;
   padding:8px;
   text-align:center;
 }
@@ -144,21 +160,8 @@ body{
   width:6px;
   height:6px;
   border-radius:50%;
-  margin:6px auto 0;
   background:var(--amber);
-}
-
-.section{
-  margin-top:24px;
-}
-
-.section-title{
-  font-size:12px;
-  text-transform:uppercase;
-  letter-spacing:.12em;
-  color:#cbd5e1;
-  margin-bottom:12px;
-  font-weight:800;
+  margin:6px auto 0;
 }
 
 .feed{
@@ -167,8 +170,8 @@ body{
   align-items:center;
   background:rgba(17,24,39,.82);
   border:1px solid var(--border);
-  border-radius:20px;
-  padding:14px;
+  border-radius:22px;
+  padding:16px;
   margin-bottom:10px;
 }
 
@@ -205,22 +208,94 @@ body{
   font-weight:700;
 }
 
-.nav{
+.progress{
+  width:100%;
+  height:10px;
+  border-radius:999px;
+  background:#1e293b;
+  overflow:hidden;
+  margin-top:12px;
+}
+
+.progress span{
+  display:block;
+  height:100%;
+  width:64%;
+  background:linear-gradient(90deg,var(--blue),var(--purple));
+}
+
+.table{
+  background:rgba(17,24,39,.82);
+  border:1px solid var(--border);
+  border-radius:22px;
+  overflow:hidden;
+}
+
+.row{
+  display:flex;
+  justify-content:space-between;
+  padding:16px;
+  border-bottom:1px solid rgba(255,255,255,.05);
+}
+
+.row:last-child{
+  border-bottom:none;
+}
+
+.row-left{
+  display:flex;
+  flex-direction:column;
+  gap:4px;
+}
+
+.row-title{
+  font-weight:700;
+}
+
+.row-sub{
+  font-size:11px;
+  color:var(--muted);
+}
+
+.badge{
+  background:rgba(94,161,255,.14);
+  color:#dbeafe;
+  border:1px solid rgba(94,161,255,.25);
+  padding:6px 10px;
+  border-radius:999px;
+  font-size:10px;
+  font-weight:700;
+}
+
+.screen{
+  display:none;
+}
+
+.screen.active{
+  display:block;
+}
+
+.bottom-nav{
   position:fixed;
-  bottom:18px;
   left:50%;
   transform:translateX(-50%);
+  bottom:18px;
+
   width:min(420px,calc(100% - 24px));
   height:74px;
-  background:rgba(8,13,24,.82);
+
+  background:rgba(9,13,24,.82);
   border:1px solid var(--border);
+
   border-radius:30px;
+
   display:grid;
   grid-template-columns:repeat(5,1fr);
+
   backdrop-filter:blur(20px);
 }
 
-.nav button{
+.bottom-nav button{
   background:none;
   border:none;
   color:var(--muted);
@@ -228,13 +303,72 @@ body{
   font-weight:700;
 }
 
-.nav button.active{
+.bottom-nav button.active{
   color:white;
 }
 
-.hidden{
-  display:none;
+.stat-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
 }
+
+.stat{
+  background:rgba(17,24,39,.82);
+  border:1px solid var(--border);
+  border-radius:20px;
+  padding:14px;
+}
+
+.stat h5{
+  color:var(--muted);
+  font-size:10px;
+  text-transform:uppercase;
+  margin-bottom:6px;
+}
+
+.stat strong{
+  font-size:20px;
+}
+
+.chart{
+  height:180px;
+  border-radius:20px;
+  border:1px solid var(--border);
+  background:
+    linear-gradient(180deg, rgba(94,161,255,.15), transparent),
+    rgba(17,24,39,.82);
+  margin-top:14px;
+  position:relative;
+  overflow:hidden;
+}
+
+.chart svg{
+  position:absolute;
+  inset:0;
+}
+
+input,select{
+  width:100%;
+  background:#0f172a;
+  border:1px solid var(--border);
+  color:white;
+  border-radius:16px;
+  padding:14px;
+  margin-top:10px;
+}
+
+.primary-btn{
+  width:100%;
+  border:none;
+  border-radius:18px;
+  padding:16px;
+  margin-top:14px;
+  background:linear-gradient(90deg,var(--blue),#2563eb);
+  color:white;
+  font-weight:700;
+}
+
 </style>
 </head>
 
@@ -242,101 +376,577 @@ body{
 
 <div class="app">
 
-  <div class="top">
-    <div class="logo">DEBT FLOW</div>
-    <div style="color:#94a3b8;font-size:12px;">May 2026</div>
+<div class="topbar">
+  <div class="logo">DEBT FLOW COMMAND</div>
+  <div style="font-size:12px;color:var(--muted)">May 2026</div>
+</div>
+
+<!-- HOME -->
+<div class="screen active" id="home">
+
+<div class="hero">
+  <div class="label">Remaining Cash</div>
+  <div class="big">$862</div>
+
+  <div class="sub">
+    You are operationally safe through the current check cycle.
+    Next paycheck lands May 22.
   </div>
 
-  <!-- HOME -->
-  <div id="home">
+  <div class="grid">
 
-    <div class="hero">
-      <div class="label">Remaining Cash</div>
-      <div class="big">$862</div>
-      <div class="sub">
-        You’re covered through the current check period.
-        Next paycheck lands May 22.
-      </div>
-
-      <div class="grid">
-        <div class="card">
-          <h4>Operations</h4>
-          <div class="value">$2,674</div>
-        </div>
-
-        <div class="card">
-          <h4>Spending</h4>
-          <div class="value">$600</div>
-        </div>
-
-        <div class="card">
-          <h4>Debt-Free</h4>
-          <div class="value">26 checks</div>
-        </div>
-
-        <div class="card">
-          <h4>Risk Ahead</h4>
-          <div class="value" style="color:var(--amber)">Jun 5</div>
-        </div>
-      </div>
+    <div class="card">
+      <h4>Operations</h4>
+      <div class="value">$2,674</div>
     </div>
 
-    <div class="section">
-      <div class="section-title">Upcoming Payments</div>
-
-      <div class="calendar">
-        <div class="day"><div class="num">6</div></div>
-        <div class="day active"><div class="num">7</div><div class="dot"></div></div>
-        <div class="day"><div class="num">8</div></div>
-        <div class="day"><div class="num">9</div><div class="dot"></div></div>
-        <div class="day"><div class="num">10</div></div>
-        <div class="day"><div class="num">11</div></div>
-        <div class="day"><div class="num">12</div><div class="dot"></div></div>
-      </div>
+    <div class="card">
+      <h4>Spending</h4>
+      <div class="value">$600</div>
     </div>
 
-    <div class="section">
-      <div class="section-title">Execution Queue</div>
+    <div class="card">
+      <h4>Debt-Free</h4>
+      <div class="value">26 checks</div>
+    </div>
 
-      <div class="feed">
-        <div class="bar debt"></div>
-        <div class="feed-main">
-          <div class="feed-name">Citi</div>
-          <div class="feed-meta">Debt Payment · Due Tomorrow</div>
-        </div>
-        <div class="feed-amt">$101</div>
-      </div>
-
-      <div class="feed">
-        <div class="bar bill"></div>
-        <div class="feed-main">
-          <div class="feed-name">Geico</div>
-          <div class="feed-meta">Bill · Due Friday</div>
-        </div>
-        <div class="feed-amt">$237</div>
-      </div>
-
-      <div class="feed">
-        <div class="bar"></div>
-        <div class="feed-main">
-          <div class="feed-name">Spending Transfer</div>
-          <div class="feed-meta">Transfer · Paid</div>
-        </div>
-        <div class="feed-amt">$600</div>
-      </div>
+    <div class="card">
+      <h4>Risk Ahead</h4>
+      <div class="value" style="color:var(--amber)">Jun 5</div>
     </div>
 
   </div>
+</div>
+
+<div class="section">
+  <div class="section-title">Upcoming Payments</div>
+
+  <div class="calendar">
+
+    <div class="day"><div class="num">6</div></div>
+
+    <div class="day active">
+      <div class="num">7</div>
+      <div class="dot"></div>
+    </div>
+
+    <div class="day"><div class="num">8</div></div>
+
+    <div class="day">
+      <div class="num">9</div>
+      <div class="dot"></div>
+    </div>
+
+    <div class="day"><div class="num">10</div></div>
+    <div class="day"><div class="num">11</div></div>
+
+    <div class="day">
+      <div class="num">12</div>
+      <div class="dot"></div>
+    </div>
+
+  </div>
+</div>
+
+<div class="section">
+
+<div class="section-title">Execution Queue</div>
+
+<div class="feed">
+  <div class="bar debt"></div>
+
+  <div class="feed-main">
+    <div class="feed-name">Citi</div>
+    <div class="feed-meta">Debt Payment · Due Tomorrow</div>
+  </div>
+
+  <div class="feed-amt">$101</div>
+</div>
+
+<div class="feed">
+  <div class="bar bill"></div>
+
+  <div class="feed-main">
+    <div class="feed-name">Geico</div>
+    <div class="feed-meta">Bill · Due Friday</div>
+  </div>
+
+  <div class="feed-amt">$237</div>
+</div>
+
+<div class="feed">
+  <div class="bar"></div>
+
+  <div class="feed-main">
+    <div class="feed-name">Spending Transfer</div>
+    <div class="feed-meta">Transfer · Paid</div>
+  </div>
+
+  <div class="feed-amt">$600</div>
+</div>
+
+</div>
+</div>
+
+<!-- CHECKS -->
+<div class="screen" id="checks">
+
+<div class="hero">
+  <div class="label">Current Check</div>
+  <div class="big">$862</div>
+
+  <div class="sub">
+    Remaining cash after unpaid cash commitments for May 8 – May 21.
+  </div>
+
+  <div class="grid">
+    <div class="card">
+      <h4>Income</h4>
+      <div class="value" style="color:var(--green)">$3,974</div>
+    </div>
+
+    <div class="card">
+      <h4>Allocated</h4>
+      <div class="value">$3,812</div>
+    </div>
+
+    <div class="card">
+      <h4>Paid</h4>
+      <div class="value">$1,300</div>
+    </div>
+
+    <div class="card">
+      <h4>Pending</h4>
+      <div class="value" style="color:var(--amber)">$356</div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">Due This Check</div>
+
+  <div class="feed">
+    <div class="bar debt"></div>
+    <div class="feed-main">
+      <div class="feed-name">Citi</div>
+      <div class="feed-meta">Debt Payment · Cash · Attack Target</div>
+    </div>
+    <div class="feed-amt">$101</div>
+  </div>
+
+  <div class="feed">
+    <div class="bar bill"></div>
+    <div class="feed-main">
+      <div class="feed-name">Geico</div>
+      <div class="feed-meta">Bill · Cash · Due May 9</div>
+    </div>
+    <div class="feed-amt">$237</div>
+  </div>
+
+  <div class="feed">
+    <div class="bar debt"></div>
+    <div class="feed-main">
+      <div class="feed-name">Navy Federal</div>
+      <div class="feed-meta">Debt Payment · Cash · Due May 10</div>
+    </div>
+    <div class="feed-amt">$472</div>
+  </div>
+
+  <button class="primary-btn">Finalize Check</button>
+</div>
 
 </div>
 
-<div class="nav">
-  <button class="active">Home</button>
-  <button>Checks</button>
-  <button>Cash</button>
-  <button>Planner</button>
-  <button>Free</button>
+<!-- CASH -->
+<div class="screen" id="cash">
+
+<div class="hero">
+  <div class="label">Cash Position</div>
+  <div class="big">$3,274</div>
+
+  <div class="sub">
+    Estimated liquidity from manual balances and planned commitments.
+  </div>
 </div>
+
+<div class="section">
+  <div class="section-title">Survivability</div>
+
+  <div class="stat-grid">
+    <div class="stat">
+      <h5>Coverage</h5>
+      <strong style="color:var(--green)">21 days</strong>
+    </div>
+
+    <div class="stat">
+      <h5>Safety Margin</h5>
+      <strong>$862</strong>
+    </div>
+
+    <div class="stat">
+      <h5>Upcoming Risk</h5>
+      <strong style="color:var(--amber)">Jun 5</strong>
+    </div>
+
+    <div class="stat">
+      <h5>Overallocated</h5>
+      <strong style="color:var(--red)">Jul 3</strong>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">Category Pressure</div>
+
+  <div class="table">
+    <div class="row">
+      <div class="row-left">
+        <div class="row-title">Transfers</div>
+        <div class="row-sub">Rent + Spending</div>
+      </div>
+      <strong>$1,300</strong>
+    </div>
+
+    <div class="row">
+      <div class="row-left">
+        <div class="row-title">Debt Payments</div>
+        <div class="row-sub">Cards + Loans</div>
+      </div>
+      <strong>$1,614</strong>
+    </div>
+
+    <div class="row">
+      <div class="row-left">
+        <div class="row-title">Bills</div>
+        <div class="row-sub">Insurance + utilities</div>
+      </div>
+      <strong>$774</strong>
+    </div>
+
+    <div class="row">
+      <div class="row-left">
+        <div class="row-title">Subscriptions</div>
+        <div class="row-sub">Recurring spending</div>
+      </div>
+      <strong>$427</strong>
+    </div>
+  </div>
+</div>
+
+</div>
+
+<!-- PLANNER -->
+<div class="screen" id="planner">
+
+<div class="hero">
+  <div class="label">Planner</div>
+  <div class="big">12</div>
+  <div class="sub">Rolling paycheck periods forecasted from the primary income source.</div>
+</div>
+
+<div class="section">
+  <div class="section-title">Paycheck Timeline</div>
+
+  <div class="table">
+    <div class="row">
+      <div class="row-left">
+        <div class="row-title">May 8 – May 21</div>
+        <div class="row-sub">Current · open execution</div>
+      </div>
+      <strong style="color:var(--green)">+$862</strong>
+    </div>
+
+    <div class="row">
+      <div class="row-left">
+        <div class="row-title">May 22 – Jun 4</div>
+        <div class="row-sub">Healthy</div>
+      </div>
+      <strong style="color:var(--green)">+$1,287</strong>
+    </div>
+
+    <div class="row">
+      <div class="row-left">
+        <div class="row-title">Jun 5 – Jun 18</div>
+        <div class="row-sub">Tight period</div>
+      </div>
+      <strong style="color:var(--amber)">+$48</strong>
+    </div>
+
+    <div class="row">
+      <div class="row-left">
+        <div class="row-title">Jul 3 – Jul 16</div>
+        <div class="row-sub">Overallocated</div>
+      </div>
+      <strong style="color:var(--red)">-$38</strong>
+    </div>
+  </div>
+</div>
+
+</div>
+
+<!-- DEBT FREE -->
+<div class="screen" id="debtfree">
+
+<div class="hero">
+  <div class="label">Debt-Free Journey</div>
+  <div class="big">$38.4k</div>
+
+  <div class="sub">
+    Projected debt remaining. Estimated freedom date: August 2028.
+  </div>
+
+  <div class="progress">
+    <span></span>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">Next Milestone</div>
+
+  <div class="card">
+    <h4>Citi eliminated</h4>
+    <div class="value">3 checks</div>
+    <div class="sub">Frees $101/month for the next target.</div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">Payoff Order</div>
+
+  <div class="table">
+    <div class="row">
+      <div class="row-left">
+        <div class="row-title">1 · Citi</div>
+        <div class="row-sub">Current target</div>
+      </div>
+      <strong>$1,788</strong>
+    </div>
+
+    <div class="row">
+      <div class="row-left">
+        <div class="row-title">2 · USAA</div>
+        <div class="row-sub">Next target</div>
+      </div>
+      <strong>$4,950</strong>
+    </div>
+
+    <div class="row">
+      <div class="row-left">
+        <div class="row-title">3 · Best Egg</div>
+        <div class="row-sub">High APR loan</div>
+      </div>
+      <strong>$20,352</strong>
+    </div>
+  </div>
+</div>
+
+</div>
+
+<!-- MORE -->
+<div class="screen" id="more">
+
+<div class="hero">
+  <div class="label">More</div>
+  <div class="big">Tools</div>
+  <div class="sub">Secondary workflows and system configuration.</div>
+</div>
+
+<div class="section">
+  <div class="section-title">Tools</div>
+
+  <div class="grid">
+    <div class="card" onclick="showScreen('payoff')">
+      <h4>Payoff</h4>
+      <div class="value">Target</div>
+    </div>
+
+    <div class="card" onclick="showScreen('accounts')">
+      <h4>Accounts</h4>
+      <div class="value">Data</div>
+    </div>
+
+    <div class="card" onclick="showScreen('adjustments')">
+      <h4>Adjustments</h4>
+      <div class="value">Fixes</div>
+    </div>
+
+    <div class="card" onclick="showScreen('setup')">
+      <h4>Setup</h4>
+      <div class="value">Rules</div>
+    </div>
+  </div>
+</div>
+
+</div>
+
+<!-- PAYOFF -->
+<div class="screen" id="payoff">
+
+<div class="hero">
+  <div class="label">Payoff Target</div>
+  <div class="big">$1,788</div>
+  <div class="sub">Citi · 0% APR · estimated payoff in 3 checks.</div>
+</div>
+
+<div class="section">
+  <div class="section-title">Attack Allocation</div>
+
+  <div class="card">
+    <h4>Attack Share</h4>
+    <div class="value" style="color:var(--purple)">75%</div>
+    <div class="progress"><span style="width:75%"></span></div>
+  </div>
+</div>
+
+<button class="primary-btn" onclick="showScreen('more')">Back to More</button>
+
+</div>
+
+<!-- ACCOUNTS -->
+<div class="screen" id="accounts">
+
+<div class="hero">
+  <div class="label">Accounts</div>
+  <div class="big">Data</div>
+  <div class="sub">Income sources, obligations, debts, and recurring items.</div>
+</div>
+
+<div class="section">
+  <div class="section-title">Income Sources</div>
+
+  <div class="table">
+    <div class="row">
+      <div class="row-left">
+        <div class="row-title">Primary Job</div>
+        <div class="row-sub">Biweekly · cadence driver</div>
+      </div>
+      <strong>$3,974</strong>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">Obligations</div>
+
+  <div class="table">
+    <div class="row">
+      <div class="row-left">
+        <div class="row-title">Rent</div>
+        <div class="row-sub">Monthly transfer</div>
+      </div>
+      <strong>$1,400</strong>
+    </div>
+
+    <div class="row">
+      <div class="row-left">
+        <div class="row-title">Best Egg</div>
+        <div class="row-sub">Loan · 24.99% APR</div>
+      </div>
+      <strong>$20,352</strong>
+    </div>
+  </div>
+</div>
+
+<button class="primary-btn" onclick="showScreen('more')">Back to More</button>
+
+</div>
+
+<!-- ADJUSTMENTS -->
+<div class="screen" id="adjustments">
+
+<div class="hero">
+  <div class="label">Adjustments</div>
+  <div class="big">Fixes</div>
+  <div class="sub">Manual entries, notes, variances, and cleanup actions.</div>
+</div>
+
+<div class="section">
+  <div class="section-title">Execution Activity</div>
+
+  <div class="table">
+    <div class="row">
+      <div class="row-left">
+        <div class="row-title">Rent</div>
+        <div class="row-sub">Actual matches planned</div>
+      </div>
+      <strong style="color:var(--green)">$0</strong>
+    </div>
+
+    <div class="row">
+      <div class="row-left">
+        <div class="row-title">Geico</div>
+        <div class="row-sub">Actual variance</div>
+      </div>
+      <strong style="color:var(--red)">-$5</strong>
+    </div>
+  </div>
+</div>
+
+<button class="primary-btn" onclick="showScreen('more')">Back to More</button>
+
+</div>
+
+<!-- SETUP -->
+<div class="screen" id="setup">
+
+<div class="hero">
+  <div class="label">Setup</div>
+  <div class="big">Rules</div>
+  <div class="sub">Planning horizon, payoff method, thresholds, and app reset tools.</div>
+</div>
+
+<div class="section">
+  <div class="section-title">Planning</div>
+
+  <input value="2026-05-06">
+  <select>
+    <option>12 months</option>
+    <option>24 months</option>
+    <option>36 months</option>
+  </select>
+</div>
+
+<div class="section">
+  <div class="section-title">Payoff Strategy</div>
+
+  <select>
+    <option>Snowball — Credit Cards First</option>
+    <option>Avalanche</option>
+    <option>Snowball</option>
+  </select>
+</div>
+
+<button class="primary-btn">Save Settings</button>
+<button class="primary-btn" style="background:var(--red)" onclick="showScreen('more')">Back to More</button>
+
+</div>
+
+</div>
+
+<div class="bottom-nav">
+  <button class="active" onclick="showScreen('home', this)">Home</button>
+  <button onclick="showScreen('checks', this)">Checks</button>
+  <button onclick="showScreen('cash', this)">Cash</button>
+  <button onclick="showScreen('planner', this)">Planner</button>
+  <button onclick="showScreen('debtfree', this)">Free</button>
+</div>
+
+<script>
+function showScreen(id, btn){
+  document.querySelectorAll('.screen').forEach(screen => {
+    screen.classList.remove('active');
+  });
+
+  document.getElementById(id).classList.add('active');
+
+  if(btn){
+    document.querySelectorAll('.bottom-nav button').forEach(button => {
+      button.classList.remove('active');
+    });
+    btn.classList.add('active');
+  }
+}
+</script>
 
 </body>
 </html>
