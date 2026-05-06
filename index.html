@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Debt App V2 Mock</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#060b16;
+  --panel:#121a2b;
+  --panel2:#192235;
+  --border:rgba(255,255,255,.08);
+  --text:#f8fafc;
+  --muted:#94a3b8;
+  --blue:#5ea1ff;
+  --purple:#8b5cf6;
+  --green:#22c55e;
+  --amber:#f59e0b;
+  --red:#ef4444;
+}
+
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+body{
+  background:
+    radial-gradient(circle at top left, rgba(94,161,255,.18), transparent 30%),
+    radial-gradient(circle at top right, rgba(139,92,246,.12), transparent 30%),
+    var(--bg);
+  color:var(--text);
+  font-family:Inter,sans-serif;
+}
+
+.app{
+  max-width:430px;
+  margin:auto;
+  min-height:100vh;
+  padding:18px 18px 120px;
+}
+
+.top{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:18px;
+}
+
+.logo{
+  font-weight:800;
+  font-size:14px;
+  letter-spacing:.08em;
+  color:#dbeafe;
+}
+
+.hero{
+  background:linear-gradient(145deg,#111827,#1b2740);
+  border:1px solid var(--border);
+  border-radius:28px;
+  padding:24px;
+  margin-bottom:16px;
+  box-shadow:0 20px 50px rgba(0,0,0,.35);
+}
+
+.label{
+  font-size:11px;
+  color:var(--muted);
+  text-transform:uppercase;
+  letter-spacing:.12em;
+  font-weight:800;
+}
+
+.big{
+  font-size:52px;
+  font-weight:800;
+  margin:10px 0;
+  letter-spacing:-.06em;
+}
+
+.sub{
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.5;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+  margin-top:14px;
+}
+
+.card{
+  background:rgba(17,24,39,.82);
+  border:1px solid var(--border);
+  border-radius:20px;
+  padding:14px;
+}
+
+.card h4{
+  font-size:10px;
+  text-transform:uppercase;
+  letter-spacing:.12em;
+  color:var(--muted);
+  margin-bottom:8px;
+}
+
+.card .value{
+  font-size:22px;
+  font-weight:700;
+}
+
+.calendar{
+  display:grid;
+  grid-template-columns:repeat(7,1fr);
+  gap:8px;
+  margin-top:18px;
+}
+
+.day{
+  background:rgba(17,24,39,.82);
+  border:1px solid var(--border);
+  border-radius:16px;
+  min-height:62px;
+  padding:8px;
+  text-align:center;
+}
+
+.day.active{
+  border-color:rgba(94,161,255,.5);
+  background:rgba(94,161,255,.12);
+}
+
+.day .num{
+  font-weight:700;
+}
+
+.dot{
+  width:6px;
+  height:6px;
+  border-radius:50%;
+  margin:6px auto 0;
+  background:var(--amber);
+}
+
+.section{
+  margin-top:24px;
+}
+
+.section-title{
+  font-size:12px;
+  text-transform:uppercase;
+  letter-spacing:.12em;
+  color:#cbd5e1;
+  margin-bottom:12px;
+  font-weight:800;
+}
+
+.feed{
+  display:flex;
+  gap:12px;
+  align-items:center;
+  background:rgba(17,24,39,.82);
+  border:1px solid var(--border);
+  border-radius:20px;
+  padding:14px;
+  margin-bottom:10px;
+}
+
+.bar{
+  width:4px;
+  align-self:stretch;
+  border-radius:999px;
+  background:var(--blue);
+}
+
+.bar.debt{
+  background:var(--purple);
+}
+
+.bar.bill{
+  background:var(--amber);
+}
+
+.feed-main{
+  flex:1;
+}
+
+.feed-name{
+  font-weight:700;
+  margin-bottom:4px;
+}
+
+.feed-meta{
+  font-size:11px;
+  color:var(--muted);
+}
+
+.feed-amt{
+  font-weight:700;
+}
+
+.nav{
+  position:fixed;
+  bottom:18px;
+  left:50%;
+  transform:translateX(-50%);
+  width:min(420px,calc(100% - 24px));
+  height:74px;
+  background:rgba(8,13,24,.82);
+  border:1px solid var(--border);
+  border-radius:30px;
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  backdrop-filter:blur(20px);
+}
+
+.nav button{
+  background:none;
+  border:none;
+  color:var(--muted);
+  font-size:11px;
+  font-weight:700;
+}
+
+.nav button.active{
+  color:white;
+}
+
+.hidden{
+  display:none;
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+  <div class="top">
+    <div class="logo">DEBT FLOW</div>
+    <div style="color:#94a3b8;font-size:12px;">May 2026</div>
+  </div>
+
+  <!-- HOME -->
+  <div id="home">
+
+    <div class="hero">
+      <div class="label">Remaining Cash</div>
+      <div class="big">$862</div>
+      <div class="sub">
+        You’re covered through the current check period.
+        Next paycheck lands May 22.
+      </div>
+
+      <div class="grid">
+        <div class="card">
+          <h4>Operations</h4>
+          <div class="value">$2,674</div>
+        </div>
+
+        <div class="card">
+          <h4>Spending</h4>
+          <div class="value">$600</div>
+        </div>
+
+        <div class="card">
+          <h4>Debt-Free</h4>
+          <div class="value">26 checks</div>
+        </div>
+
+        <div class="card">
+          <h4>Risk Ahead</h4>
+          <div class="value" style="color:var(--amber)">Jun 5</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Upcoming Payments</div>
+
+      <div class="calendar">
+        <div class="day"><div class="num">6</div></div>
+        <div class="day active"><div class="num">7</div><div class="dot"></div></div>
+        <div class="day"><div class="num">8</div></div>
+        <div class="day"><div class="num">9</div><div class="dot"></div></div>
+        <div class="day"><div class="num">10</div></div>
+        <div class="day"><div class="num">11</div></div>
+        <div class="day"><div class="num">12</div><div class="dot"></div></div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Execution Queue</div>
+
+      <div class="feed">
+        <div class="bar debt"></div>
+        <div class="feed-main">
+          <div class="feed-name">Citi</div>
+          <div class="feed-meta">Debt Payment · Due Tomorrow</div>
+        </div>
+        <div class="feed-amt">$101</div>
+      </div>
+
+      <div class="feed">
+        <div class="bar bill"></div>
+        <div class="feed-main">
+          <div class="feed-name">Geico</div>
+          <div class="feed-meta">Bill · Due Friday</div>
+        </div>
+        <div class="feed-amt">$237</div>
+      </div>
+
+      <div class="feed">
+        <div class="bar"></div>
+        <div class="feed-main">
+          <div class="feed-name">Spending Transfer</div>
+          <div class="feed-meta">Transfer · Paid</div>
+        </div>
+        <div class="feed-amt">$600</div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<div class="nav">
+  <button class="active">Home</button>
+  <button>Checks</button>
+  <button>Cash</button>
+  <button>Planner</button>
+  <button>Free</button>
+</div>
+
+</body>
+</html>
